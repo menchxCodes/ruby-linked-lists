@@ -34,12 +34,12 @@ class LinkedLists
 
   def to_s
     # @type [String]
-    string = ""
+    string = ''
     # @type [Node]
     pointer = @head
     until pointer.nil?
       string.concat("( #{pointer.value} ) -> ") unless pointer.value.nil?
-      string.concat("nil") if pointer.next_node.nil?
+      string.concat('nil') if pointer.next_node.nil?
       pointer = pointer.next_node
     end
     string
@@ -53,7 +53,6 @@ class Node
     @value = value
     @next_node = nil
   end
-
 end
 
 list = LinkedLists.new

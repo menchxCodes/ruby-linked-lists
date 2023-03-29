@@ -39,6 +39,12 @@ class LinkedLists
     pointer
   end
 
+  def pop
+    pointer = @head
+    pointer = pointer.next_node until pointer.next_node.next_node.nil?
+    pointer.next_node = nil
+  end
+
   def size
     # @type [Node]
     pointer = @head
@@ -85,3 +91,6 @@ puts "size: #{list.size}"
 p list.head.value
 p list.tail.value
 p list.at(5)
+
+list.pop
+puts list

@@ -40,9 +40,32 @@ class LinkedLists
   end
 
   def pop
+    # @type [Node]
     pointer = @head
     pointer = pointer.next_node until pointer.next_node.next_node.nil?
     pointer.next_node = nil
+  end
+
+  def contains?(value)
+    pointer = @head
+    until pointer.next_node.nil?
+      pointer = pointer.next_node
+      return true if pointer.value == value
+
+    end
+    false
+  end
+
+  def find(value)
+    pointer = @head
+    index = 0
+    until pointer.next_node.nil?
+      pointer = pointer.next_node
+      index += 1
+      return index if pointer.value == value
+
+    end
+    nil
   end
 
   def size
@@ -78,7 +101,7 @@ class Node
     @next_node = nil
   end
 end
-
+# --- tests ---
 list = LinkedLists.new
 
 list.append(1)
@@ -94,3 +117,6 @@ p list.at(5)
 
 list.pop
 puts list
+
+p list.contains?(4)
+p list.find(7)

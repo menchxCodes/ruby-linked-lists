@@ -17,13 +17,32 @@ class LinkedLists
     @head.next_node = node
   end
 
+  def head
+    @head.next_node
+  end
+
+  def size
+    # @type [Node]
+    pointer = @head
+    count = 0
+    until pointer.next_node.nil?
+      pointer = pointer.next_node
+      count += 1
+    end
+    count
+  end
+
   def to_s
+    # @type [String]
+    string = ""
     # @type [Node]
     pointer = @head
     until pointer.nil?
-      puts pointer.value unless pointer.value.nil?
+      string.concat("( #{pointer.value} ) -> ") unless pointer.value.nil?
+      string.concat("nil") if pointer.next_node.nil?
       pointer = pointer.next_node
     end
+    string
   end
 end
 
@@ -45,3 +64,5 @@ list.prepend(3)
 list.append(5)
 list.prepend(4)
 puts list
+puts "size: #{list.size}"
+p list.head

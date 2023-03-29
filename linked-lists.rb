@@ -21,6 +21,24 @@ class LinkedLists
     @head.next_node
   end
 
+  def tail
+    pointer = @head
+    pointer = pointer.next_node until pointer.next_node.nil?
+    pointer
+  end
+
+  def at(index)
+    pointer = @head
+    count = 0
+    until count == index
+      return nil if pointer.next_node.nil?
+
+      pointer = pointer.next_node
+      count += 1
+    end
+    pointer
+  end
+
   def size
     # @type [Node]
     pointer = @head
@@ -64,4 +82,6 @@ list.append(5)
 list.prepend(4)
 puts list
 puts "size: #{list.size}"
-p list.head
+p list.head.value
+p list.tail.value
+p list.at(5)

@@ -68,6 +68,31 @@ class LinkedLists
     nil
   end
 
+  def insert_at(value, index)
+    node = Node.new(value)
+    pointer = @head
+    count = 0
+    until count == index
+      if count == index - 1
+        after = pointer.next_node
+        pointer.next_node = node
+        node.next_node = after
+      end
+      pointer = pointer.next_node
+      count += 1
+    end
+  end
+
+  def remove_at(index)
+    pointer = @head
+    count = 0
+    until count == index
+      pointer.next_node = pointer.next_node.next_node if count == index - 1
+      pointer = pointer.next_node
+      count += 1
+    end
+  end
+
   def size
     # @type [Node]
     pointer = @head
@@ -101,22 +126,3 @@ class Node
     @next_node = nil
   end
 end
-# --- tests ---
-list = LinkedLists.new
-
-list.append(1)
-list.append(2)
-list.prepend(3)
-list.append(5)
-list.prepend(4)
-puts list
-puts "size: #{list.size}"
-p list.head.value
-p list.tail.value
-p list.at(5)
-
-list.pop
-puts list
-
-p list.contains?(4)
-p list.find(7)
